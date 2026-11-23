@@ -1,11 +1,6 @@
 # Практична робота: Робота зі словником
 # Тімлід: Деревцов Андрій
-#
-# План удосконалення для команди:
-# TODO (Басанець Олександр):
-# 1. Перевірити код та протестувати обробку помилок.
-# 2. Реалізувати функцію find_min_max_height(people) для пошуку найвищої та найнижчої особи в словнику.
-# 3. Додати новий пункт у головне меню програми.
+# Учасник команди: Басанець Олександр
 
 people = {
     "Коваленко Олександр": {"height": 182, "gender": "ч"},
@@ -90,6 +85,19 @@ def average_men_height(data):
         print("\nУ словнику немає записів про чоловіків.")
 
 
+def find_min_max_height(data):
+    """Пошук найвищої та найнижчої особи у словнику (реалізував Басанець Олександр)."""
+    if not data:
+        print("\nСловник порожній, пошук неможливий.")
+        return
+
+    tallest = max(data.items(), key=lambda item: item[1]["height"])
+    shortest = min(data.items(), key=lambda item: item[1]["height"])
+
+    print(f"\nНайвища особа: {tallest[0]} ({tallest[1]['height']} см, стать: {tallest[1]['gender']})")
+    print(f"Найнижча особа: {shortest[0]} ({shortest[1]['height']} см, стать: {shortest[1]['gender']})")
+
+
 def main():
     while True:
         print("\n МЕНЮ ")
@@ -98,6 +106,7 @@ def main():
         print("3. Видалити запис")
         print("4. Вивести записи за відсортованими ключами")
         print("5. Визначити середній зріст чоловіків")
+        print("6. Знайти найвищу та найнижчу особу")
         print("0. Вихід")
 
         choice = input("Оберіть дію: ").strip()
@@ -112,6 +121,8 @@ def main():
             print_sorted(people)
         elif choice == "5":
             average_men_height(people)
+        elif choice == "6":
+            find_min_max_height(people)
         elif choice == "0":
             print("Роботу завершено.")
             break
